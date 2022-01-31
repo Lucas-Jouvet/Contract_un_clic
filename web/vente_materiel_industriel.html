@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <link rel="stylesheet" href="css.css" />
+    <meta charset="UTF-8">
+    <title>Vente de materiel industriel</title>
+    <script language="javascript" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script language="javascript" type="text/javascript" src="./web3.min.js"></script>
+    
+    <script language="javascript" type="text/javascript" src="Vente_materielABI.js"></script>
+    <script language="javascript" type="text/javascript" src="ABI2.js"></script>
+
+    <script language="javascript" type="text/javascript" src="./Byte_code.js"></script>
+    <script language="javascript" type="text/javascript" src="./ABI.js"></script>
+  </head>
+
+  <body>
+    <center>
+      <h1>Contrat vente de matériel industriel</h1>
+    </center>
+    <div id="div_init">
+      <center>
+	<p>
+	  <label> Addresse Ethereum acheteur :</label>
+	  <input type="text" name="na" id="na">
+	  <label> Addresse Ethereum vendeur :</label>
+	  <input type="text" name="nv" id="nv">
+	  <button class="new_contract">Déployer nouveau contract</button>
+	  
+	</p>
+      </center>
+    </div>
+    <div id="div_contrat">
+      <br/>
+      <center>
+	<input type="text" name="add" id="add">
+	<button class="go">Débuter</button>
+	<br/>
+	<div id="etherscan"></div>
+	<br/><br/>
+      </center>
+    </div>
+    <div id="cc">
+      <div id="formulaire">
+	<div id="div_paties">
+
+	  
+	  <h2 id="Partie">Partie</h2>
+	  
+	  <p>
+	    <label> Nom de Société :</label>
+	    <input type="text" name="ANS" id="ANS">
+	    <br/><br/>
+	    <label> Forme juridique :</label>
+	    <input type="text" name="AFJ" id="AFJ">
+	    <br/><br/>
+	    <label> Capital :</label>
+	    <input type="number" name="AC" id="AC">
+	    <br/><br/>
+	    <label> Registre commerce :</label>
+	    <input type="text" name="ARC" id="ARC">
+	    <br/><br/>
+	    <label> Siret :</label>
+	    <input type="text" name="AS" id="AS">
+	    <br/><br/>
+	    <label> Adresse Siège :</label>
+	    <input type="text" name="AAS" id="AAS">
+	  </p>
+	  <h2>Parties représentant</h2>
+	  <p>
+	    <label> Nom :</label>
+	    <input type="text" name="nom_r" id="nom_r">
+	    <br/><br/>
+	    <label> Prénom :</label>
+	    <input type="text" name="prenom_r" id="prenom_r">
+	    <br/><br/>
+	    <label> Titre :</label>
+	    <input type="text" name="titre_r" id="titre_r">
+	    <br/><br/>
+	    <form>
+	    <input type="radio" name="intitule" id="rMadame" value="Madame"> <label for="rMadame">Madame</label>
+	    <input type="radio" name="intitule" id="rMonsieur" value="Monsieur"> <label for="rMonsieur">Monsieur</label>
+
+	    </form>
+	  </p>
+	</div>
+
+	<div id="div_materiel">
+	  <h2>Matériel</h2>
+	  <p>
+	    <label>Caractéristique Matériel (Vendeur)</label>
+	    <br/><br/>
+	    <label> Marque du matériel :</label>
+	    <input type="text" name="marque" id="marque">
+	    <br/><br/>
+	    <label> Numéro de série :</label>
+	    <input type="text" name="numero_de_serie" id="numero_de_serie" >
+	    <br/><br/>
+	    <label> Description matériel :</label>
+	    <input type="text" name="description" id="description">
+	    <br/><br/>
+	    <label> Description de matériel supplémentaire :</label>
+	    <input type="text" name="description_objet_supplementaire" id="description_objet_supplementaire" required>
+	  </p>
+	</div>
+
+	<div id="div_vente_vendeur">
+	  <h2>Modalité de paiement</h2>
+	  <p>
+	    <label> Modalité de paiement (Vendeur)</label>
+	    <br/><br/>
+	    <label> Prix ht :</label>
+	    <input type="text" name="prix_ht" id="prix_ht">
+	    <br/><br/>
+	    <label> Prix tva :</label>
+	    <input type="text" name="prix_tva" id="prix_tva">
+	    <br/><br/>
+	    <label> Prix eth :</label>
+	    <input type="text" name="prix_eth" id="prix_eth">
+	    <br/><br/>
+	    <label> Numéro de compte :</label>
+	    <input type="text" name="virement_num_compte" id="virement_num_compte">
+	    <br/><br/>
+	    <label> Banque :</label>
+	    <input type="text" name="virement_nom_banc" id="virement_nom_banc">
+	  </p>
+
+	</div>
+	<div id="div_vente_acheteur">
+	  <p>
+	    <h2>Modalité de paiement</h2>
+	    <label>Modalité de paiement (Acheteur)</label>
+	    <br/><br/>
+	    <label> Moyen de paiement :</label>
+	    <SELECT NAME="type" ID="type">
+	      <OPTION VALUE="cheque">Chèque
+	      <OPTION VALUE="espece">Espéces
+	      <OPTION VALUE="virement">Virement
+	      <OPTION VALUE="eth">Eth
+	    </SELECT>
+	    <br/><br/>
+	    <label>Numéro de chèque :</label>
+	    <input type="text" name="cheque_numero" id="cheque_numero">
+	    <br/><br/>
+	    <label>Date de virement :</label>
+	    <input type="text" name="virement_date_de_paiment" id="virement_date_de_paiment">
+	  </p>
+	</div>
+
+	<div id="div_livraison">
+	  <h2>Livraison</h2>
+	  <p>
+	    <label>Modalité de livraison (Vendeur)</label>
+	    <br/><br/>
+	    <label> Type de livraison :</label>
+	    <SELECT NAME="type" ID="ou">
+	      <OPTION VALUE="retire_vendeur">Retirer chez vendeur
+	      <OPTION VALUE="livre_vendeur">Vendeur livre chez client
+	      <OPTION VALUE="livre_frais_acheteur">Livraison frais de l'acheteur
+	    </SELECT>
+	    <br/><br/>
+	    <label> Adresse livraison:</label>
+	    <input type="text" name="adresse" id="adresse">
+	    <br/><br/>
+	    <label> Date de livraison :</label>
+	    <input type="text" name="date_livraison" id="date_livraison">
+	  </p>
+	</div>
+
+	<div id="div_garanties">
+	  <h2>Garantie</h2>
+	  <p>
+	    <label>Modalité de Garantie (Vendeur)</label>
+	    <br/><br/>
+	    <label> type de garantie :</label>
+	    <SELECT NAME="typeg" ID="typeg">
+	      <OPTION VALUE="pas_de_garanties">Pas de garantie
+	      <OPTION VALUE="cession_garanties">Cession de garantie
+	      <OPTION VALUE="garanties_vendeur">Garantie vendeur
+	    </SELECT>
+	    <br/><br/>
+	    <label> Durée :</label>
+	    <input type="text" name="dure" id="dure">
+	  </p>
+	</div>
+
+	<div id="div_garanties">
+	  <h2>Etat du Matériel</h2>
+	  <p>
+	    <label> Etat :</label>
+	    <input type="text" name="etat" id="etat">
+	  </p>
+	</div>
+	
+	<div id="div_litige_signature">
+	  <h2>Signature</h2>
+	  <p>
+	    <label> Nom du tribunal :</label>
+	    <input type="text" name="nom_tribunal" id="nom_tribunal">
+	    <br/><br/>
+	    <label> Ville de signature :</label>
+	    <input type="text" name="ville_signature" id="ville_signature">
+	    <br/><br/>
+	    <label> Date de signature :</label>
+	    <input type="text" name="date_signature" id="date_signature">
+	  </p>
+	  
+	  <button class="Send_information">Envoyer les informations</button>
+
+	  
+	  <div id="txLitige_signature"></div>
+	  <div id="DefLitige_signature"></div>
+	  <center>
+	    <div>
+	      <button class="Lu_Contrat">Lu et approuvé</button>
+	      <br/><br/>
+	      <button class="Valide_Contrat">Signer</button>
+	      <button class="Paiement">Payer</button>
+	      <br/><br/>
+	      <div id="Validation_Contrat"></div>
+	    </div>
+	  </center>
+	</div>
+      </div>
+      <div id= "Contrat">
+	<p>
+	  <div id="affiche_vendeur"></div>
+	  <br/>
+
+	  Appelé ci-après le vendeur,<br/>
+	  <br/>
+	  <center>Et</center><br/>
+	  <br/>
+	  <div id="affiche_acheteur"></div>
+	  <br/>
+	  Appelé ci-après l’acheteur,<br/>
+	  <br/>
+	  Il a été convenu et arrêté ce qui suit :<br/>
+	  <br/>
+	  <h2>1 – Objet de la vente</h2><br/>
+	  <br/>
+	  <div id="affiche_materiel"></div>
+	  <br/>
+	  Le vendeur déclare être en pleine propriété du matériel et certifie que le bien vendu est libre<br/>
+	  de toute revendication.<br/>
+	  <br/>
+	  <h2>2 – Prix de la vente du matériel industriel et modalités de règlement</h2><br/>
+	  <br/>
+	  <div id="affiche_vente"></div>
+	  <br/>
+	  <h2>3 – Modalités de livraison</h2><br/>
+	  <br/>
+	  <div id="affiche_livraison"></div>
+	  <br/>
+	  <h2>4 – État du bien</h2><br/>
+	  <br/>
+	  <div id="affiche_etat_bien"></div>
+	  <br/>
+	  <h2>5 – Garanties</h2><br/>
+	  <br/>
+	  <div id="affiche_Garanties"></div>
+	  <br/>
+	  <h2>6 – Clause en cas de litige</h2><br/>
+	  <br/>
+	  <div id="affiche_litige_signature"></div>
+	  <br/><br/>
+	  <div id="Validation_Litige_signature"></div>
+	  <div id="Paiement"></div>
+	</p> 
+      </div> 
+    </div>
+
+    <script src="init.js"></script>
+    <script src="signature.js"></script>
+	
+  </body>
+</html>
